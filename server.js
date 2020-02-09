@@ -1,5 +1,17 @@
 const express = require('express');
 var app = express();
+
+const cors = require('cors');
+var corsOptions = {
+    origin: '*',
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+    allowedHeaders: 'Access-Control-Allow-Origin,Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'//,
+    //methods: 'GET, POST, PUT, DELETE, OPTIONS',
+    //exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
+    //credentials: true
+}
+app.use(cors(corsOptions));
+
 var port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 const Task = require('./api/models/testAppModel').default; //created model loading here
@@ -27,4 +39,5 @@ routes(app); //register the route
 
 app.listen(port);
 
-console.log('todo list RESTful API server started on: ' + port);
+
+console.log('RESTful API server started on: ' + port);

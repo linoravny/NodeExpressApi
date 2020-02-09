@@ -7,8 +7,6 @@ function getUsers() {
     xhr.open('GET', 'http://localhost:3000/getUsers', true); //true for processed asynchronously
 
     xhr.responseType = 'json';
-    //xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-   // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     var arrOfUsersFileds = ["first_name", "last_name", "email", "status"]
     xhr.onload = function () {
 
@@ -137,41 +135,45 @@ function addUser(user){
 //add form validation here...
     var form = document.querySelector("form#newUserForm");
     var formData = {
-        first_name: form.elements.firstName.value,
-        last_name: form.elements.lastName.value,
-        email: form.elements.email.value,
-        status: form.elements.ddlStatus.value
+        "first_name": form.elements.firstName.value,
+        "last_name": form.elements.lastName.value,
+        "email": form.elements.email.value,
+        "status": form.elements.ddlStatus.value
     };
 
+    // let usr = {
+    //     first_name: "some first name",
+    //     last_name: "some last name",
+    //     email: "email@gmail.com",
+    //     status: "admin"
+    // };
+    // var params = JSON.stringify(usr);
+
     var data = JSON.stringify(formData);
-   // var data = "first_name="+form.elements.firstName.value+"&last_name="+form.elements.lastName.value+"&email="+form.elements.email.value+"&status="+form.elements.ddlStatus.value;
+       // var data = "first_name="+form.elements.firstName.value+"&last_name="+form.elements.lastName.value+"&email="+form.elements.email.value+"&status="+form.elements.ddlStatus.value;
 
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
+    xhr.open('POST', 'http://localhost:3000/setUser', true); 
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
+    //xhr.withCredentials = true;
+    xhr.responseType = 'json';
 
-        if (xhr.readyState === 4) {
-            var data = this.response;
-            if (data && xhr.status === 200) {
-                console.error("edit success");
-            } else {
-                //handel error:
-                // const errorMessage = document.createElement('div');
-                // errorMessage.textContent = `it's not working!`;
-                // app.appendChild(errorMessage);
-            } 
+    xhr.onreadystatechange = function () {
+        var data = this.response;
+        if (data && xhr.readyState === 4 && xhr.status === 200) {
+            getUsers();
+            console.error("add user success");
         } else {
-            console.log(xhr.statusText);
+            //console.log(xhr.statusText);
         }
     }
 
-    xhr.onerror = function (e) {
-        console.error("addUser error");
-    };
 
-    xhr.open('POST', 'http://localhost:3000/setUser', true); 
-    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-   // xhr.setRequestHeader("header_nb", "1");
-   // xhr.setRequestHeader("header_ds", "logon");
-    xhr.setRequestHeader( "Content-Type", "application/json; charset=UTF-8" );
+
+    // xhr.onerror = function (e) {
+    //     console.error("addUser error");
+    // };
+
     xhr.send(data);
 }

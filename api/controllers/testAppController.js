@@ -14,10 +14,14 @@ User.find({}, function(err, users) {
 
 exports.add_user = function(req, res) {
   var new_user = new User(req.body);
-  new_user.save(function(err, user) {
-    if (err)
+  new_user.save(function(err, result) {
+    console.log("add_user");
+    if (err) { 
       res.send(err);
-    res.json(user);
+    }
+    else if(result) {
+     res.json(result)
+    }
   });
 };
 

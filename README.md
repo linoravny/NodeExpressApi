@@ -6,3 +6,4 @@ required install -
 
 1. run $npm install
 2. run $npm run start
+3. client - run index.html in desktopVanilla/index.html
