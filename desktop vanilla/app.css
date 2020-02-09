@@ -1,0 +1,9 @@
+
+
+body {
+    --background-color: yellow;
+}
+
+    body table.tbl_container {
+        width: 100%;
+    }
