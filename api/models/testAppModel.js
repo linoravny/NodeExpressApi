@@ -1,8 +1,11 @@
 'use strict';
-const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
-var UserSchema  = new Schema({
+const mongoose = require('mongoose');
+
+var UserSchema  = new mongoose.Schema({
+  // _id: {
+//   type:BSONType
+  // },
  first_name: {
     type: String,
     required: 'Enter first name'
@@ -19,11 +22,12 @@ var UserSchema  = new Schema({
     default: Date.now
   },
   status: {
-    type: [{
+    type: String
+   /* type: [{
       type: String,
       enum: ['regular', 'express', 'admin']
     }],
-    default: ['regular']
+    default: ['regular']*/
   }
 });
 

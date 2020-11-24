@@ -1,43 +1,33 @@
+
+
 const express = require('express');
 var app = express();
 
-const cors = require('cors');
-var corsOptions = {
-    origin: '*',
-    methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-    allowedHeaders: 'Access-Control-Allow-Origin,Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'//,
-    //methods: 'GET, POST, PUT, DELETE, OPTIONS',
-    //exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
-    //credentials: true
-}
-app.use(cors(corsOptions));
-
 var port = process.env.PORT || 3000;
-const mongoose = require('mongoose');
-const Task = require('./api/models/testAppModel').default; //created model loading here
-const bodyParser = require('body-parser');
-  
-// mongoose instance connection url connection
-const MONGO_URI = 'mongodb://localhost:27017/RestApiTestdb';
-mongoose.Promise = global.Promise;
-mongoose
-.connect(MONGO_URI, {
-useUnifiedTopology: true,
-useNewUrlParser: true,
-})
-.then(() => console.log('DB Connected!'))
-.catch(err => {
-    console.log('DB Connected Error: ' + err);
-})
 
+const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var routes = require('./api/routes/testAppRoutes'); //importing route
+/**** ROUTE ****/
+var routes = require('./api/routes/productRoutes'); //importing route
 routes(app); //register the route
 
 
-app.listen(port);
+/**** mongoose connect to Atlas DB ****/
+const mongoose = require('mongoose');
+const uri = "mongodb+srv://linoravny:apiapi123@cluster0.ps0o2.azure.mongodb.net/testAppUsersDB?retryWrites=true&w=majority";
 
+let opts = { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true };
 
-console.log('RESTful API server started on: ' + port);
+mongoose.connect(uri, opts);
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("MongoDB database connection established successfully");
+});
+
+/**** PORT ****/
+  app.listen(port, () => {
+    console.log(`Server listening at ${port}`);
+});
+

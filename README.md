@@ -6,4 +6,4 @@ required install -
 
 1. run $npm install
 2. run $npm run start
-3. client - run index.html in desktopVanilla/index.html
+3. client - run index.html in desktopVanilla/index.html (right click on index html + copy path -> then run in chrome)

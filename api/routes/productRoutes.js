@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(app) {
-  var users = require('../controllers/testAppController');
+  var prosuctCont = require('../controllers/productController');
 
   // const cors = require('cors');
   // var corsOptions = {
@@ -24,23 +24,19 @@ module.exports = function(app) {
 // });
 
   // todoList Routes
-  app.route('/getUsers')
-    .get(users.get_all_users);
+  app.route('/getProducts')
+    .get(prosuctCont.get_all_products);
 
-  app.route('/setUser')
-    .post(users.add_user, (req, res) => {
+  app.route('/setProduct')
+    .post(prosuctCont.add_product, (req, res) => {
       console.log(res);
     });
 
-app.route('/editUser')
-    .put(users.update_user);
+app.route('/editProduct')
+    .put(prosuctCont.update_product);
 
-app.route('/deleteUser')
-    .delete(users.delete_user);
-
-
-app.route('/users/:userId')
-  .get(users.get_user);
+app.route('/deleteProduct')
+    .delete(prosuctCont.delete_product);
 
     // app.listen(null, function () {
     //   console.log('CORS-enabled web server listening on port 80')
