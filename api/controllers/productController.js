@@ -10,37 +10,26 @@ exports.get_all_products = function(req, res) {
         if (error)
           res.send(error);
 
-        console.log('get_all_products result =' + result);
+        //console.log('get_all_products result =' + result);
         res.json(result);
     });
 };
 
 exports.add_product = function(req, res) {
-  console.log(req.body);
+  console.log('add_product request =' + JSON.stringify(req.body));
 
-  var prod = new Product({
+  const prod = new Product({
     name: req.body.name,
     email: req.body.email,
     type: req.body.type
   });
-  // Product.insertOne({
-  //   name: req.body.name,
-  //   age: req.body.age 
-  // }, function(err, result) {
-  //   if (err) throw err;
-  //   res.json(result);
-  //   //db.close();
-  // });
 
-  prod.save(function(err, result) {
-    if (err) { 
-      res.send(err);
-    }
-    else if(result) {
-      console.log("add_product success");
-      res.send(result);
-      //res.json(result);
-    }
+  Product.create(prod, function(err, result) {
+    if (err) 
+      throw err;
+
+    console.log("add_product() result:" + result);
+    res.json(result);
   });
 };
 
@@ -51,10 +40,6 @@ exports.update_product = function(req, res) {
   console.log("update_product id: "+ req.body.id);
 
   const filter = {_id: req.body.id};
-  //const updateDoc = {_id: req.params.id};
-
-  const options = {};//{ upsert: false };
-
   const updateDoc = {
     $set: {
       name:req.body.name,
@@ -69,16 +54,10 @@ exports.update_product = function(req, res) {
     console.log("update_product result: "+ result);
     res.json(result);
   });
-  // Product.findOneAndUpdate({_id: req.params.id}, req.body, function(err, result) {
-  //   if (err)
-  //     res.send(err);
-  //   res.json(result);
-  // });
 };
 
 exports.delete_product = function(req, res) {
-  console.log('delete_product request =' + JSON.stringify(req.body));
-  console.log(req.body);
+  console.log('delete_product request =' + req.body);
 
   Product.deleteOne({
       _id: req.body.id
