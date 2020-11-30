@@ -13,13 +13,13 @@
     
     <form id="productsForm">
         <h1>Add new Products</h1>
-   
+        <div class="addError error" style="display: none;">Email and Name are required</div>
        <fieldset>
-           <input type="text" id="name" name="name" placeholder="name" />
+           <input type="text" id="name" name="name" placeholder="name" required />
        </fieldset>
 
         <fieldset>
-            <input type="text" id="email" name="email" placeholder="email" />
+            <input type="text" id="email" name="email" placeholder="email" required />
         </fieldset>
 
         <fieldset>

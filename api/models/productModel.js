@@ -4,10 +4,12 @@ const mongoose = require('mongoose');
 
 var ProductSchema  = new mongoose.Schema({
  name: {
-    type: String
+    type: String,
+    required: 'Enter name'
   },
   email: {
-    type: String
+    type: String,
+    required: 'Enter email'
   },
   type: {
     type: String

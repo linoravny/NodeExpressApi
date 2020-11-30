@@ -22,6 +22,12 @@ body {
         margin: 5px;
     }
 
+    .error {
+        color: red;
+        margin: 5px 0;
+        display: none;
+    }
+
     table#tbl_container {
         border: 1px solid #a8a9ab;
         width: 100%;

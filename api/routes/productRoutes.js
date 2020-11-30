@@ -13,16 +13,6 @@ module.exports = function(app) {
     }
   app.use(cors(corsOptions));
 
-
-// Add headers
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.header("Content-Type", "application/json");
-//     res.header("Access-Control-Allow-Methods", "DELETE, POST, GET, OPTIONS");
-//     next();
-// });
-
   // todoList Routes
   app.route('/getProducts')
     .get(productCont.get_all_products);
