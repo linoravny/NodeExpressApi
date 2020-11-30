@@ -1,8 +1,9 @@
-# NodeJS with MongoDb
+# CRUD, Node JS Express and MongoDB
 
-required install - 
+### required install 
     + Node JS : https://nodejs.org/en/download/
     + mongoDB : https://docs.mongodb.com/manual/tutorial/
+
 
 1. run $npm install
 2. run $npm run start

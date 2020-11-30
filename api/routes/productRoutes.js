@@ -1,17 +1,17 @@
 'use strict';
 module.exports = function(app) {
-  var prosuctCont = require('../controllers/productController');
+  var productCont = require('../controllers/productController');
 
-  // const cors = require('cors');
-  // var corsOptions = {
-  //     origin: '*',
-  //     methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
-  //     allowedHeaders: 'Access-Control-Allow-Origin,Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'//,
-  //     //methods: 'GET, POST, PUT, DELETE, OPTIONS',
-  //     //exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
-  //     //credentials: true
-  //   }
-  // app.use(cors(corsOptions));
+  const cors = require('cors');
+  var corsOptions = {
+      origin: '*',
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
+      allowedHeaders: 'Access-Control-Allow-Origin,Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With'//,
+      //methods: 'GET, POST, PUT, DELETE, OPTIONS',
+      //exposedHeaders: ['Content-Length', 'X-Foo', 'X-Bar'],
+      //credentials: true
+    }
+  app.use(cors(corsOptions));
 
 
 // Add headers
@@ -25,20 +25,21 @@ module.exports = function(app) {
 
   // todoList Routes
   app.route('/getProducts')
-    .get(prosuctCont.get_all_products);
+    .get(productCont.get_all_products);
 
-  app.route('/setProduct')
-    .post(prosuctCont.add_product, (req, res) => {
-      console.log(res);
+  app.route('/addProduct')
+    .post(productCont.add_product, (req, res, next) => {
+      //console.log("router path:/addProduct sucess");
+      //res.send({success:true});
     });
 
-app.route('/editProduct')
-    .put(prosuctCont.update_product);
+  app.route('/editProduct')
+      .put(productCont.update_product);
 
-app.route('/deleteProduct')
-    .delete(prosuctCont.delete_product);
+  app.route('/deleteProduct')
+      .delete(productCont.delete_product, (req, res, next) => {
+          //console.log("Body: ", req.body);
+          //res.send(JSON.stringify(req.body));
+        });
 
-    // app.listen(null, function () {
-    //   console.log('CORS-enabled web server listening on port 80')
-    // });
 };

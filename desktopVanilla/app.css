@@ -1,9 +1,44 @@
 
 
 body {
-    --background-color: yellow;
 }
 
-    body table.tbl_container {
+    form#productsForm {
+        border: 1px solid darkgoldenrod;
+        padding: 5px;
+    }
+    form#productsForm fieldset {
+        border: 0;
+        padding: 0;
+        margin-bottom: 10px;
+    
+    }
+
+    .button {
+        background: darkseagreen;
+        color: white;
+        padding: 5px;
+        border: 1px solid darkkhaki;
+        margin: 5px;
+    }
+
+    table#tbl_container {
+        border: 1px solid #a8a9ab;
         width: 100%;
+        margin-top: 10px;
+    }
+    table#tbl_container th {
+        text-align: left;
+    }
+    table#tbl_container .inputForEdit {
+        display: block;
+    }
+    table#tbl_container .textForEdit {
+        display: block;
+    }
+    table#tbl_container .inputForEdit.hide {
+        display: none;
+    }
+    table#tbl_container .textForEdit.hide {
+        display: none;
     }
