@@ -13,7 +13,7 @@
     
     <form id="productsForm">
         <h1>Add new Products</h1>
-        <div class="addError error" style="display: none;">Email and Name are required</div>
+        <div class="addError error">Email and Name are required</div>
        <fieldset>
            <input type="text" id="name" name="name" placeholder="name" required />
        </fieldset>
@@ -32,14 +32,12 @@
 
         </fieldset>
 
-        
-
-       <input class="button" type="submit" value="Add Product" onclick="addProduct()"></input>
+       <input class="button" type="submit" value="Add Product" onclick="main.addProduct()"></input>
    </form>
 
     <h3>Products List</h3>
     <div class="btn-container">
-        <button class="button" onclick="getProducts()">Show All Products</button>
+        <button class="button" onclick="main.getProducts()">Show All Products</button>
     </div>
     <table id="tbl_container">
         <thead>
@@ -51,8 +49,6 @@
         </thead>
         <tbody id="tbl_body"></tbody>
     </table>
-
-
 
     <script src="app.js"></script>
 
