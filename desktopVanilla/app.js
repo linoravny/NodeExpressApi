@@ -78,7 +78,7 @@ const main = function(){
                                 editBtn.className = 'button editMode';
                                 editBtn.innerText = 'Edit Product';
                                 
-                                editBtn.addEventListener('click', function(event){
+                                editBtn.addEventListener('click', (event) =>{
                                 
                                     var editError = document.querySelector(".editError");
                                     editError.style.display = "none";
@@ -126,7 +126,7 @@ const main = function(){
                                 deleteBtn = document.createElement('button');
                                 deleteBtn.className = 'button';
                                 deleteBtn.innerText = 'Delete Product';
-                                deleteBtn.addEventListener('click', function(event){
+                                deleteBtn.addEventListener('click', (event) => {
                                     console.log("delete btn clicked");
                                     deleteProduct(item._id)
                                 });
@@ -134,7 +134,6 @@ const main = function(){
                                 // DELETE END
                             }
                         });
-
                     });
                 } else {
                     //handel error:

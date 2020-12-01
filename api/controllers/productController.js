@@ -33,7 +33,6 @@ exports.add_product = function(req, res) {
   });
 };
 
-
 exports.update_product = function(req, res) {
 
   console.log('update_product request =' + JSON.stringify(req.body));
