@@ -1,0 +1,27 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading' >
+    {{pageTite}}
+    </div>
+    <div class='panel-body'>
+        <div class='table-responsive' 
+            *ngIf='products && products.length; else noData'>  
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of products">
+                        <td>{{item.name | lowercase }}</td>
+                        <td>{{item.email }}</td>
+                        <td>{{item.type }}</td> 
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <ng-template #noData>No data to display</ng-template>
+   </div>
+</div>
