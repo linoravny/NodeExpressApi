@@ -3,6 +3,58 @@
     {{pageTite}}
     </div>
     <div class='panel-body'>
+        <form [formGroup]="myForm" 
+        (ngSubmit)="onClickSubmit()" 
+        novalidate 
+        name="addProductForm">
+            <!--name input-->
+            <!-- <div class="form-group">
+                <label for="name">Name</label>
+                <input type="name" 
+                    formControlName="name"
+                    class="form-control col-sm-6"
+                    placeholder="Enter name"
+                     />
+                <div *ngIf="myForm.controls.name.value">Value: {{ myForm.controls.name.value }}</div>
+             
+                <div class='alert alert-danger' *ngIf="myForm.get('name').hasError('required') && 
+                            (myForm.controls.name.dirty || myForm.controls.name.touched)" role="alert"> 
+                        name is required
+                </div> 
+            </div> -->
+            <!--email input-->
+            <!-- <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" 
+                    formControlName="email"
+                    class="form-control col-sm-6"
+                    placeholder="Enter email"
+                    aria-describedby="emailNotice"  />
+                <small id="emailNotice" class="form-text text-muted">We'll never share your email with anyone else...</small>
+                <div *ngIf="myForm.controls.email.value">Value: {{ myForm.controls.email.value }}</div>
+              
+                <div class='alert alert-danger' *ngIf="myForm.get('email').hasError('required') && 
+                            (myForm.controls.email.dirty || myForm.controls.email.touched)" role="alert"> 
+                    email is required
+                </div> 
+            </div> -->
         
-   </div>
+             <!--type ddl-->
+             <!-- <div class="form-group">
+                <label for="type">Type</label>
+                <select class="custom-select">
+                    <option value="" disabled>Choose your city</option>
+                    <option>Services</option>
+                    <option>Goods</option>
+                    <option>Experiences</option>
+                 </select>
+            </div> -->
+        
+            <!--submit-->
+            <div class='form-group'>
+                <button type="submit" class="btn btn-dark">submit</button>
+            </div>
+        
+        </form>
+    </div>   
 </div>

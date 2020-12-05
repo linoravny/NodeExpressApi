@@ -10,7 +10,7 @@ exports.get_all_products = function(req, res) {
         if (error)
           res.send(error);
 
-        //console.log('get_all_products result =' + result);
+        console.log('get_all_products result =' + result);
         res.json(result);
     });
 };

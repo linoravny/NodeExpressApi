@@ -3,6 +3,7 @@
     {{pageTite}}
     </div>
     <div class='panel-body'>
+        <div>{{ pageError }}</div>
         <div class='table-responsive' 
             *ngIf='products && products.length; else noData'>  
             <table class='table'>
@@ -11,13 +12,42 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Type</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let item of products">
-                        <td>{{item.name | lowercase }}</td>
-                        <td>{{item.email }}</td>
-                        <td>{{item.type }}</td> 
+                    <tr *ngFor="let item of products; index as i;">
+                        <td>
+                            <input *ngIf="enableEditIndex === i"
+                            required
+                            [(ngModel)]="item.name" />
+                            <span *ngIf="enableEditIndex !== i">{{ item.name | lowercase }}</span>
+                        </td>
+                        <td>
+                            <input *ngIf="enableEditIndex === i"
+                            required
+                            [(ngModel)]="item.email" />
+                            <span *ngIf="enableEditIndex !== i">{{ item.email }}</span>
+                        </td>
+                        <td>
+                            <select [(ngModel)]="item.type"
+                            *ngIf="enableEditIndex === i"
+                            required>
+                                <option *ngFor="let type of selectedTypeValues">{{type}}</option>
+                            </select>
+                            <span *ngIf="enableEditIndex !== i">{{ item.type }}</span>
+                        </td> 
+                        <td>
+                            <button type="button"
+                            (click)="editBtnClick(item, i)"
+                            class="btn btn-dark">{{ editBtnText[i] }}</button>
+                        </td>
+                        <td>
+                            <button type="button"
+                            (click)="deleteBtnClick(item)"
+                            class="btn btn-dark">Delete</button>
+                        </td>
                     </tr>
                 </tbody>
             </table>

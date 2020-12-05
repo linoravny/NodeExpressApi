@@ -27,7 +27,7 @@ module.exports = function(app) {
       .put(productCont.update_product);
 
   app.route('/deleteProduct')
-      .delete(productCont.delete_product, (req, res, next) => {
+      .post(productCont.delete_product, (req, res, next) => {
           //console.log("Body: ", req.body);
           //res.send(JSON.stringify(req.body));
         });
