@@ -21,7 +21,8 @@ routes(app); //register the route
 
 /**** mongoose connect to Atlas DB ****/
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://linoravny:apiapi123@cluster0.ps0o2.azure.mongodb.net/testAppUsersDB?retryWrites=true&w=majority";
+
+const uri = "mongodb+srv://linoravny:<PASSWORD>@cluster0.ps0o2.azure.mongodb.net/testAppUsersDB?retryWrites=true&w=majority";
 
 let opts = { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true };
 
