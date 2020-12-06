@@ -1,54 +1,76 @@
 <div class='panel panel-primary'>
-    <div class='panel-heading' >
+   
+    <h2 class='panel-heading' >
     {{pageTite}}
+    </h2>
+    <div *ngIf="pageMsg" 
+        [ngClass]="{ 'alert alert-danger':isError, 'alert alert-success': !isError }">
+        {{ pageMsg }}
     </div>
+
     <div class='panel-body'>
         <form [formGroup]="myForm" 
         (ngSubmit)="onClickSubmit()" 
         novalidate 
         name="addProductForm">
             <!--name input-->
-            <!-- <div class="form-group">
-                <label for="name">Name</label>
-                <input type="name" 
-                    formControlName="name"
-                    class="form-control col-sm-6"
-                    placeholder="Enter name"
-                     />
-                <div *ngIf="myForm.controls.name.value">Value: {{ myForm.controls.name.value }}</div>
+            <div class="form-group">
+                <label>Name:
+                    <input type="text" 
+                        required
+                        name="name"
+                        formControlName="name"
+                        class="form-control"
+                        placeholder="Enter name"
+                        />
+                </label>
              
-                <div class='alert alert-danger' *ngIf="myForm.get('name').hasError('required') && 
-                            (myForm.controls.name.dirty || myForm.controls.name.touched)" role="alert"> 
+                <div class='alert alert-danger' 
+                    *ngIf="myForm.controls.name.invalid && 
+                    (myForm.controls.name.dirty || myForm.controls.name.touched)" 
+                    role="alert"> 
                         name is required
                 </div> 
-            </div> -->
+            </div>
+
             <!--email input-->
-            <!-- <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" 
-                    formControlName="email"
-                    class="form-control col-sm-6"
-                    placeholder="Enter email"
-                    aria-describedby="emailNotice"  />
-                <small id="emailNotice" class="form-text text-muted">We'll never share your email with anyone else...</small>
-                <div *ngIf="myForm.controls.email.value">Value: {{ myForm.controls.email.value }}</div>
+            <div class="form-group">
+                <label>Email address:
+                    <input type="email" 
+                        formControlName="email"
+                        class="form-control"
+                        placeholder="Enter email"
+                        aria-describedby="emailNotice"  />
+                    <small id="emailNotice" class="form-text text-muted">We'll never share your email with anyone else...</small>
+                </label>
               
-                <div class='alert alert-danger' *ngIf="myForm.get('email').hasError('required') && 
-                            (myForm.controls.email.dirty || myForm.controls.email.touched)" role="alert"> 
-                    email is required
+                <div class='alert alert-danger' 
+                    *ngIf="myForm.controls.email.invalid && 
+                            (myForm.controls.email.dirty || myForm.controls.email.touched)" 
+                    role="alert"> 
+                    email is required in right pattern
                 </div> 
-            </div> -->
+            </div>
         
              <!--type ddl-->
-             <!-- <div class="form-group">
-                <label for="type">Type</label>
-                <select class="custom-select">
-                    <option value="" disabled>Choose your city</option>
-                    <option>Services</option>
-                    <option>Goods</option>
-                    <option>Experiences</option>
-                 </select>
-            </div> -->
+             <div class="form-group">
+                <label>Type:
+                    <select formControlName="type" 
+                        class="form-control" 
+                        required>
+                        <option value="" disabled>Choose your type</option>
+                        <option>Services</option>
+                        <option>Goods</option>
+                        <option>Experiences</option>
+                    </select>
+                </label>
+                <div class='alert alert-danger' 
+                    *ngIf="myForm.controls.type.invalid && 
+                    (myForm.controls.type.dirty || myForm.controls.type.touched)" 
+                    role="alert"> 
+                    select type is required
+                </div> 
+            </div>
         
             <!--submit-->
             <div class='form-group'>

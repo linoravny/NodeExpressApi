@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import {catchError, map} from 'rxjs/operators'
 
-@Injectable()//while service call service
+@Injectable() //define class as a service, inject into components/enother service...
 
 export class ProductService {
     _productURL:string = 'http://localhost:3000/';
@@ -12,6 +12,21 @@ export class ProductService {
 
     getProducts(): Observable<IProduct[]> {
         return this.http.get<IProduct[]>(this._productURL + "getProducts").pipe(
+            catchError(
+                (error:any)=>
+                {
+                    console.log(error);
+                    return throwError("error!!!")
+                }
+            )
+        );
+    }
+
+    addProducts(productToAdd: any): Observable<IProduct> {
+        const headers = { 'content-type': 'application/json' };
+        const body = JSON.stringify(productToAdd);
+        console.log(body);
+        return this.http.post<any>(this._productURL + "addProduct", body, {'headers':headers}).pipe(
             catchError(
                 (error:any)=>
                 {
@@ -37,7 +52,7 @@ export class ProductService {
         );
     }
 
-    deleteProducts(id: string): Observable<IProduct> {
+    deleteProducts(id: string): Observable<any> {
         const headers = { 'content-type': 'application/json' };
         const body = JSON.stringify({id: id});
         return this.http.post<any>(this._productURL + "deleteProduct", body, {'headers':headers}).pipe(

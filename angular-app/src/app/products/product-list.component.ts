@@ -68,9 +68,10 @@ export class ProductListComponent implements OnInit, OnDestroy
         }
     }
 
-    deleteBtnClick(item:IProduct) {
+    deleteBtnClick(item:any) {
         this.pageError = "";
-        this.objsubscibeEdit = this.productsSrv.deleteProducts(item.id).subscribe(
+        let id = item._id;
+        this.objsubscibeEdit = this.productsSrv.deleteProducts(id).subscribe(
             data => {
                 console.log(data);
                 if(data) {

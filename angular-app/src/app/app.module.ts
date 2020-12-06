@@ -20,19 +20,19 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [
+  declarations: [ //components
     AppComponent,
     ProductListComponent,
     ProductFormComponent
   ],
-  imports: [
+  imports: [ //modules that export classes nedded
     BrowserModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [], //services global
   bootstrap: [AppComponent]
 })
 export class AppModule { }

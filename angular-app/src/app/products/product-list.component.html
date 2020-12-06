@@ -1,9 +1,9 @@
 <div class='panel panel-primary'>
-    <div class='panel-heading' >
+    <h2 class='panel-heading' >
     {{pageTite}}
-    </div>
+    </h2>
     <div class='panel-body'>
-        <div>{{ pageError }}</div>
+        <div [ngClass]="{'alert alert-danger': pageError }">{{ pageError }}</div>
         <div class='table-responsive' 
             *ngIf='products && products.length; else noData'>  
             <table class='table'>
