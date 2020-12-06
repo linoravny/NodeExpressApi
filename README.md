@@ -1,5 +1,5 @@
 # CRUD, Node JS Express and MongoDB
-## with JS vanilla + Angular + Ract
+## with JS vanilla + Angular
 
 ## required install:
     1. Node JS : https://nodejs.org/en/download/
@@ -28,4 +28,5 @@
 ## desctopVanilla client
     - run index.html in desktopVanilla/index.html (right click   on index html + copy path -> then run in chrome)
 ## angular
+ - only first time -> $ npm install; for install node_modules folder
  - $ ng serve -o; (http://localhost:4200/)
